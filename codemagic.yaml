@@ -5,7 +5,6 @@ workflows:
     environment:
       vars:
         FCI_PROJECT_PATH: "."
-      python_version: "3.11"
     scripts:
       - name: Install dependencies
         script: |
