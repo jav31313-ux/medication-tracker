@@ -1,0 +1,20 @@
+workflows:
+  build-kivy:
+    name: Build Kivy APK
+    max_build_duration: 60
+    environment:
+      vars:
+        FCI_PROJECT_PATH: "."
+    scripts:
+      - name: Install dependencies
+        script: |
+          sudo apt update
+          sudo apt install -y python3-pip python3-dev build-essential git
+          pip install --upgrade pip
+          pip install kivy buildozer cython
+      - name: Build APK
+        script: |
+          cd $FCI_PROJECT_PATH
+          buildozer android debug
+    artifacts:
+      - $FCI_PROJECT_PATH/bin/*.apk
