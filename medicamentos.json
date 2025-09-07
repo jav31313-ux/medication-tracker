@@ -1,0 +1,67 @@
+[
+  {
+    "nombre": "Juanita",
+    "descripcion": "Sin descripción",
+    "presentacion": "Sin especificar",
+    "cantidad_total": 10.0,
+    "cantidad_actual": 28.0,
+    "dosis": 1.0,
+    "frecuencia_dias": 1,
+    "inicio": "2025-08-27 12:00",
+    "fecha_fin": "2025-10-04 22:14",
+    "ultima_alerta": null,
+    "notificaciones_activas": false
+  },
+  {
+    "nombre": "Quetiapina",
+    "descripcion": "Ansiedad",
+    "presentacion": "Sin especificar",
+    "cantidad_total": 10.0,
+    "cantidad_actual": 35.0,
+    "dosis": 1.0,
+    "frecuencia_dias": 1,
+    "inicio": "2025-08-28 12:00",
+    "fecha_fin": "2025-10-04 22:14",
+    "ultima_alerta": null,
+    "notificaciones_activas": false
+  },
+  {
+    "nombre": "qlaria",
+    "descripcion": "anticonceptivo",
+    "presentacion": "Sin especificar",
+    "cantidad_total": 28.0,
+    "cantidad_actual": 25.0,
+    "dosis": 1.0,
+    "frecuencia_dias": 1,
+    "inicio": "2025-08-30 12:00",
+    "fecha_fin": "2025-09-27 12:00",
+    "ultima_alerta": null,
+    "notificaciones_activas": false
+  },
+  {
+    "nombre": "flouxetina",
+    "descripcion": "depresion",
+    "presentacion": "Unidades",
+    "cantidad_total": 28.0,
+    "cantidad_actual": 26.0,
+    "dosis": 1.0,
+    "frecuencia_dias": 1,
+    "inicio": null,
+    "fecha_fin": "2025-10-04 21:11",
+    "ultima_alerta": null,
+    "notificaciones_activas": false
+  },
+  {
+    "nombre": "VITAMINA D",
+    "descripcion": "suplemento",
+    "presentacion": "Gramos",
+    "cantidad_total": 50000.0,
+    "cantidad_actual": 49999.0,
+    "dosis": 1000.0,
+    "frecuencia_dias": 2,
+    "inicio": "2025-08-15 12:00",
+    "fecha_fin": "2025-11-23 12:00",
+    "ultima_alerta": null,
+    "notificaciones_activas": false
+  }
+]

@@ -1,0 +1,324 @@
+ScreenManager:
+    LoginScreen:
+        name: "login"
+    MainScreen:
+        name: "main"
+
+<LoginScreen>:
+    canvas.before:
+        Color:
+            rgba: 0.95, 0.97, 0.99, 1  # Fondo azul muy claro
+        Rectangle:
+            pos: self.pos
+            size: self.size
+    BoxLayout:
+        orientation: "vertical"
+        padding: dp(50)
+        spacing: dp(20)
+        
+        Widget:
+            size_hint_y: 0.3
+            
+        Label:
+            text: "Tracker de Medicamentos"
+            halign: "center"
+            font_size: "24sp"
+            color: 0.2, 0.4, 0.7, 1  # Azul oscuro
+            bold: True
+            size_hint_y: None
+            height: dp(60)
+            
+        Label:
+            text: "Mantén el control de tus medicamentos"
+            halign: "center"
+            font_size: "14sp"
+            color: 0.4, 0.5, 0.6, 1  # Gris azulado
+            size_hint_y: None
+            height: dp(30)
+            
+        TextInput:
+            id: nombre_input
+            hint_text: "Ingresa tu nombre"
+            multiline: False
+            size_hint_y: None
+            height: dp(50)
+            background_color: 1, 1, 1, 1
+            foreground_color: 0.2, 0.2, 0.2, 1
+            cursor_color: 0.2, 0.6, 0.9, 1
+            font_size: "16sp"
+            padding: dp(15), dp(15)
+            
+        Button:
+            text: "Iniciar sesión"
+            pos_hint: {"center_x":0.5}
+            size_hint_y: None
+            height: dp(50)
+            size_hint_x: 0.8
+            background_color: 0.2, 0.6, 0.9, 1  # Azul principal
+            color: 1, 1, 1, 1
+            font_size: "16sp"
+            bold: True
+            on_release: root.iniciar_sesion()
+            
+        Label:
+            id: info_label
+            text: ""
+            halign: "center"
+            markup: True
+            color: 0.8, 0.3, 0.3, 1  # Rojo para errores
+            
+        Widget:
+            size_hint_y: 0.5
+
+<MainScreen>:
+    name: "main"
+    BoxLayout:
+        orientation: "vertical"
+
+        # Header fijo (no se mueve con scroll)
+        BoxLayout:
+            orientation: "horizontal"
+            size_hint_y: None
+            height: dp(60)
+            canvas.before:
+                Color:
+                    rgba: 0.2, 0.6, 0.9, 1  # Azul principal
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+            Label:
+                text: "Mis Medicamentos"
+                font_size: "20sp"
+                color: 1, 1, 1, 1
+                bold: True
+                padding: dp(20), 0
+            BoxLayout:
+                orientation: "horizontal"
+                size_hint_x: None
+                width: dp(280)
+                spacing: dp(5)
+                
+                Button:
+                    text: "📊 Stats"
+                    size_hint_x: None
+                    width: dp(70)
+                    background_color: 0.6, 0.2, 0.8, 1  # Morado
+                    color: 1, 1, 1, 1
+                    font_size: "11sp"
+                    on_release: root.mostrar_estadisticas()
+                
+                Button:
+                    text: "📅 Calendario"
+                    size_hint_x: None
+                    width: dp(85)
+                    background_color: 0.2, 0.7, 0.5, 1  # Verde azulado
+                    color: 1, 1, 1, 1
+                    font_size: "11sp"
+                    on_release: root.mostrar_calendario()
+                
+                Button:
+                    text: "📋 History"
+                    size_hint_x: 0.2
+                    background_color: 0.5, 0.3, 0.7, 1
+                    color: 1, 1, 1, 1
+                    font_size: "11sp"
+                    on_release: root.mostrar_historial()
+                
+                Button:
+                    text: "✅ Checklist"
+                    size_hint_x: 0.2
+                    background_color: 0.2, 0.8, 0.4, 1
+                    color: 1, 1, 1, 1
+                    font_size: "11sp"
+                    on_release: root.mostrar_checklist()
+                
+                Button:
+                    text: "🚪 Exit"
+                    size_hint_x: 0.2
+                    background_color: 0.8, 0.3, 0.3, 1
+                    color: 1, 1, 1, 1
+                    font_size: "11sp"
+                    on_release: root.cerrar_sesion()
+
+        # Contenido scrolleable
+        ScrollView:
+            do_scroll_x: False
+            canvas.before:
+                Color:
+                    rgba: 0.98, 0.99, 1, 1  # Fondo muy claro
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+            BoxLayout:
+                orientation: "vertical"
+                padding: dp(20)
+                spacing: dp(15)
+                size_hint_y: None
+                height: self.minimum_height
+
+                Label:
+                    id: bienvenida_label
+                    text: ""
+                    halign: "center"
+                    font_size: "18sp"
+                    color: 0.2, 0.4, 0.7, 1
+                    bold: True
+                    size_hint_y: None
+                    height: dp(40)
+
+                # Sección Agregar Medicamento
+                BoxLayout:
+                    orientation: "vertical"
+                    spacing: dp(10)
+                    size_hint_y: None
+                    height: self.minimum_height
+                    canvas.before:
+                        Color:
+                            rgba: 1, 1, 1, 1  # Fondo blanco
+                        RoundedRectangle:
+                            pos: self.pos
+                            size: self.size
+                            radius: [10]
+                        Color:
+                            rgba: 0.9, 0.95, 1, 1  # Borde azul claro
+                        Line:
+                            rounded_rectangle: self.x, self.y, self.width, self.height, 10
+                            width: 2
+                    padding: dp(20)
+
+                    Label:
+                        text: "➕ Agregar Medicamento"
+                        font_size: "18sp"
+                        color: 0.2, 0.4, 0.7, 1
+                        bold: True
+                        halign: "left"
+                        size_hint_y: None
+                        height: dp(35)
+
+                    TextInput:
+                        id: m_nombre
+                        hint_text: "Nombre del medicamento"
+                        multiline: False
+                        size_hint_y: None
+                        height: dp(45)
+                        background_color: 0.97, 0.98, 1, 1
+                        foreground_color: 0.2, 0.2, 0.2, 1
+                        cursor_color: 0.2, 0.6, 0.9, 1
+                        font_size: "16sp"
+                        padding: dp(15), dp(12)
+
+                    TextInput:
+                        id: m_descripcion
+                        hint_text: "Descripción (ej: para la presión)"
+                        multiline: False
+                        size_hint_y: None
+                        height: dp(45)
+                        background_color: 0.97, 0.98, 1, 1
+                        foreground_color: 0.2, 0.2, 0.2, 1
+                        cursor_color: 0.2, 0.6, 0.9, 1
+                        font_size: "16sp"
+                        padding: dp(15), dp(12)
+
+                    Button:
+                        id: m_presentacion
+                        text: "Selecciona presentación"
+                        size_hint_y: None
+                        height: dp(45)
+                        background_color: 0.9, 0.95, 1, 1
+                        color: 0.1, 0.1, 0.1, 1
+                        font_size: "16sp"
+                        on_release: root.open_menu()
+
+                    BoxLayout:
+                        orientation: "horizontal"
+                        spacing: dp(10)
+                        size_hint_y: None
+                        height: dp(45)
+                        
+                        TextInput:
+                            id: m_cantidad
+                            hint_text: "Cantidad total"
+                            multiline: False
+                            input_filter: "float"
+                            background_color: 0.97, 0.98, 1, 1
+                            foreground_color: 0.2, 0.2, 0.2, 1
+                            cursor_color: 0.2, 0.6, 0.9, 1
+                            font_size: "16sp"
+                            padding: dp(15), dp(12)
+
+                        TextInput:
+                            id: m_dosis
+                            hint_text: "Dosis por día"
+                            multiline: False
+                            input_filter: "float"
+                            background_color: 0.97, 0.98, 1, 1
+                            foreground_color: 0.2, 0.2, 0.2, 1
+                            cursor_color: 0.2, 0.6, 0.9, 1
+                            font_size: "16sp"
+                            padding: dp(15), dp(12)
+
+                    TextInput:
+                        id: m_frecuencia
+                        hint_text: "Ej: 1 = diario, 2 = cada dos días..."
+                        multiline: False
+                        input_filter: "int"
+                        size_hint_y: None
+                        height: dp(45)
+                        background_color: 0.97, 0.98, 1, 1
+                        foreground_color: 0.2, 0.2, 0.2, 1
+                        cursor_color: 0.2, 0.6, 0.9, 1
+                        font_size: "16sp"
+                        padding: dp(15), dp(12)
+
+                    TextInput:
+                        id: m_inicio
+                        hint_text: "Inicio (YYYY-MM-DD HH:MM) opcional"
+                        multiline: False
+                        size_hint_y: None
+                        height: dp(45)
+                        background_color: 0.97, 0.98, 1, 1
+                        foreground_color: 0.2, 0.2, 0.2, 1
+                        cursor_color: 0.2, 0.6, 0.9, 1
+                        font_size: "16sp"
+                        padding: dp(15), dp(12)
+
+                    BoxLayout:
+                        orientation: "horizontal"
+                        size_hint_y: None
+                        height: dp(50)
+                        spacing: dp(15)
+                        
+                        Button:
+                            text: "Agregar / Guardar"
+                            background_color: 0.2, 0.7, 0.4, 1  # Verde
+                            color: 1, 1, 1, 1
+                            font_size: "16sp"
+                            bold: True
+                            on_release: root.agregar_medicamento()
+                        
+                        Button:
+                            text: "🗑️ Limpiar"
+                            background_color: 0.7, 0.5, 0.2, 1  # Naranja
+                            color: 1, 1, 1, 1
+                            font_size: "16sp"
+                            on_release: root.limpiar_campos()
+
+                Widget:
+                    size_hint_y: None
+                    height: dp(20)
+
+                # Sección Lista de Medicamentos
+                Label:
+                    text: "Medicamentos Registrados"
+                    font_size: "18sp"
+                    color: 0.2, 0.4, 0.7, 1
+                    bold: True
+                    halign: "left"
+                    size_hint_y: None
+                    height: dp(35)
+                BoxLayout:
+                    id: lista_medicamentos
+                    orientation: "vertical"
+                    spacing: dp(10)
+                    size_hint_y: None
+                    height: self.minimum_height

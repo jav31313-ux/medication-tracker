@@ -1,0 +1,10 @@
+{
+  "fecha": "2025-09-06",
+  "medicamentos": {
+    "0": true,
+    "2": true,
+    "1": true,
+    "3": true,
+    "4": false
+  }
+}

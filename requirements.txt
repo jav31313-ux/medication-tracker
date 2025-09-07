@@ -1,0 +1,4 @@
+kivy==2.3.1
+plyer==2.1.0
+matplotlib==3.8.2
+numpy==1.26.2
